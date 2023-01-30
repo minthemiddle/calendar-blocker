@@ -44,5 +44,5 @@ while($currentTime <= $end && $day_current <= $day_end) {
     }
 }
 
+echo count($slots);
 print_r($slots);
-
