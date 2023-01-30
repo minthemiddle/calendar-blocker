@@ -1,0 +1,6 @@
+{
+    "require": {
+        "spatie/icalendar-generator": "^2.5",
+        "nesbot/carbon": "^2.66"
+    }
+}
