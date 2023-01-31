@@ -1,8 +1,8 @@
-# Calendar Priority Blocker
+# Calendar Blocker
 
 This tool creates calendar blocker slots based on your priority areas.
 The blocker slots are for your upcoming week.
-You can import the blocker slots into any calendar as they are in *.ics format.
+You can import the blocker slots into any calendar as they are in `*.ics` format.
 
 ## What works
 
