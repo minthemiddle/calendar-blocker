@@ -25,3 +25,13 @@ $calendar = Calendar::create('Blocker')
 // Output the iCalendar data to a file
 file_put_contents('out/events.ics', $calendar);
 
+// Create the CSV file
+
+$fp = fopen('out/event_titles.csv', 'w');
+
+foreach ($titles as $title) {
+    fwrite($fp, $title);
+    fwrite($fp, PHP_EOL);
+}
+
+fclose($fp);
