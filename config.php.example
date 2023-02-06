@@ -1,0 +1,21 @@
+<?php
+
+require 'vendor/autoload.php';
+use Carbon\Carbon;
+
+$working_hours = [
+    'day_start' => '0900',
+    'break_start' => 1130,
+    'break_end' => 1230,
+    'day_end' => 1245,
+];
+
+$start = Carbon::createFromFormat('Hi', $working_hours['day_start']);
+$end = Carbon::createFromFormat('Hi', $working_hours['day_end']);
+
+$currentTime = $start;
+$day_start = 0;
+$day_end = 4;
+$day_current = 0;
+$slotDuration = 25;
+$breakDuration = 5;
