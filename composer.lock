@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e0e3af12356a3eb7382715d22c7e058",
+    "content-hash": "b7a5ff9fc4094a779939eec32a312c21",
     "packages": [
+        {
+            "name": "chypriote/unique-names-generator",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chypriote/UniqueNamesGenerator.git",
+                "reference": "facd732b64be7bdf37965f033c0070b295d83b8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chypriote/UniqueNamesGenerator/zipball/facd732b64be7bdf37965f033c0070b295d83b8a",
+                "reference": "facd732b64be7bdf37965f033c0070b295d83b8a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Chypriote\\UniqueNames\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas",
+                    "email": "chypriote@lolpros.gg"
+                }
+            ],
+            "description": "A package to create readable, meaningful, random strings from animal names, colors and adjectives.",
+            "keywords": [
+                "adjective",
+                "animal",
+                "color",
+                "generator",
+                "name",
+                "random",
+                "slug"
+            ],
+            "support": {
+                "issues": "https://github.com/chypriote/UniqueNamesGenerator/issues",
+                "source": "https://github.com/chypriote/UniqueNamesGenerator/tree/v0.0.2"
+            },
+            "time": "2022-05-25T08:24:53+00:00"
+        },
         {
             "name": "nesbot/carbon",
             "version": "2.66.0",
