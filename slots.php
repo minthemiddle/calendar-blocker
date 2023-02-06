@@ -7,6 +7,7 @@ use Chypriote\UniqueNames\Generator;
 
 $generator = new Generator();
 
+// to save a list of available slots
 $slots = [];
 // to save a list of available slots' titles
 $titles = (array) [];
@@ -21,8 +22,10 @@ while($currentTime <= $end && $day_current <= $day_end) {
 
         $slot = [
             'day' => $day_current,
-            'start' => $currentTime->format('H:i'),
-            'end' => $slotEnd->format('H:i'),
+            'start_hour' => $currentTime->format('H'),
+            'start_minutes' => $currentTime->format('i'),
+            'end_hour' => $slotEnd->format('H'),
+            'end_minutes' => $slotEnd->format('i'),
             'title' => $title,
         ];
         
