@@ -5,9 +5,26 @@ use Carbon\Carbon;
 
 $working_hours = [
     'day_start' => '0900',
-    'break_start' => 1130,
-    'break_end' => 1230,
-    'day_end' => 1245,
+    'break_start' => '1130',
+    'break_end' => '1230',
+    'day_end' => '1245',
+];
+
+// Needs to add up to 100
+
+$priorities = [
+    [
+        'title' => 'topic1',
+        'weight' => 60,
+    ],
+    [
+        'title' => 'topic2',
+        'weight' => 20,
+    ],
+    [
+        'title' => 'topic3',
+        'weight' => 20,
+    ],
 ];
 
 $start = Carbon::createFromFormat('Hi', $working_hours['day_start']);

@@ -17,3 +17,4 @@ You can import the blocker slots into any calendar as they are in `*.ics` format
 ## What does not work yet
 
 - Timezones: Without timezone, I need to deduct one hour from settings file for MEZ winter time
+- Have amount of strategic slots, maybe replacing the titles or description with area
