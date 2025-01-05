@@ -1,12 +1,12 @@
 # Calendar Blocker 🗓️
 
-A productivity tool to automatically generate time blocking slots in your calendar based on priority areas (tactical, operational, strategical).
+A productivity tool to automatically generate time blocking slots in your calendar based on priority areas (e.g., tactical, operational, strategical).
 
 ## Features
 
 - 🕒 Automatic time slot generation based on working hours
 - ⏸️ Automatic break time handling
-- 📊 Priority-based slot distribution (tactical/operational/strategical/OKR-KPI)
+- 📊 Priority-based slot distribution (e.g., tactical/operational/strategical/OKR-KPI)
 - 📅 Generates .ics calendar files for easy import
 - 🏷️ Unique titles for each time slot
 - ⚙️ Fully configurable through config.php
@@ -30,7 +30,7 @@ A productivity tool to automatically generate time blocking slots in your calend
 3. Import the generated file:
    - `out/events.ics` to your calendar
 4. Calendar events will include:
-   - Priority type (Tactical/Operational/Strategic/OKR-KPI)
+   - Priority type (e.g., Tactical/Operational/Strategic/OKR-KPI)
    - Unique slot ID for reference
 
 ## Output Files
@@ -47,7 +47,7 @@ A productivity tool to automatically generate time blocking slots in your calend
   - break_start: Start of break (format: HHMM)
   - break_end: End of break (format: HHMM)
 - Slot duration: timeSlotDuration (minutes)
-- Priority distribution:
+- Priority distribution (e.g.):
   - Tactical: Short-term work like feature scoping
   - Operational: Team alignment and roadmap management
   - Strategic: Long-term product positioning
@@ -56,7 +56,6 @@ A productivity tool to automatically generate time blocking slots in your calend
 
 ## Known Limitations
 
-- ⏰ Timezone support not yet implemented (adjust manually for MEZ winter time)
 - 📅 Currently generates slots for one week only
 - 🔄 No automatic calendar sync (manual import required)
 
