@@ -5,17 +5,42 @@ use Carbon\Carbon;
 
 $working_hours = [
     'day_start' => '0900',
-    'break_start' => 1130,
-    'break_end' => 1230,
-    'day_end' => 1245,
+    'break_start' => '1200',
+    'break_end' => '1230',
+    'day_end' => '1315',
+];
+
+// Tactical: Short-term work like feature scoping, ticket refinement and pairing with engineers
+// Operational: Connecting strategy and tactical work via aligning teams and managing roadmaps
+// Strategical: Long term position of products & services within company vision
+
+$priorities = [
+    [
+        'title' => 'Tactical:',
+        'weight' => 10,
+    ],
+    [
+        'title' => 'OKR/KPI',
+        'weight' => 5,
+    ],
+    [
+        'title' => 'Operational: Team',
+        'weight' => 25,
+    ],
+    [
+        'title' => 'Operational: ',
+        'weight' => 30,
+    ],
+    [
+        'title' => 'Strategic:',
+        'weight' => 30,
+    ],
 ];
 
 $start = Carbon::createFromFormat('Hi', $working_hours['day_start']);
 $end = Carbon::createFromFormat('Hi', $working_hours['day_end']);
 
-$currentTime = $start;
-$day_start = 0;
-$day_end = 4;
-$day_current = 0;
-$slotDuration = 25;
-$breakDuration = 5;
+$offset_days = 1; // Number of days to offset from the current date
+$days_to_generate = $offset_days + 1; // Include the offset days and additional days to generate slots
+$timeSlotDuration = 45;
+$breakInterval = 15;
