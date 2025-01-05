@@ -50,4 +50,3 @@ while ($currentTime <= $end && $day_current < $days_to_generate) {
             $currentTime = Carbon::createFromFormat('Hi', $working_hours['day_start']);
         }
     }
-}
