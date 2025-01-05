@@ -5,9 +5,10 @@ A productivity tool to automatically generate time blocking slots in your calend
 ## Features
 
 - 🕒 Automatic time slot generation based on working hours
-- 📊 Priority-based slot distribution (tactical/operational/strategical)
+- ⏸️ Automatic break time handling
+- 📊 Priority-based slot distribution (tactical/operational/strategical/OKR-KPI)
 - 📅 Generates .ics calendar files for easy import
-- 📝 Creates a CSV file of all slot titles for reference
+- 🏷️ Unique titles for each time slot
 - ⚙️ Fully configurable through config.php
 
 ## Installation
@@ -20,14 +21,17 @@ A productivity tool to automatically generate time blocking slots in your calend
 ## Usage
 
 1. Configure your settings in `config.php`:
-   - Working hours
-   - Break times
-   - Slot duration
-   - Priority distribution
+   - Working hours (day_start, day_end)
+   - Break times (break_start, break_end)
+   - Slot duration (timeSlotDuration)
+   - Priority distribution percentages
+   - Number of days to generate (days_to_generate)
 2. Run the generator: `php main.php`
-3. Import the generated files:
+3. Import the generated file:
    - `out/events.ics` to your calendar
-   - Use `out/event_titles.csv` as a reference
+4. Calendar events will include:
+   - Priority type (Tactical/Operational/Strategic/OKR-KPI)
+   - Unique slot ID for reference
 
 ## Output Files
 
@@ -36,11 +40,19 @@ A productivity tool to automatically generate time blocking slots in your calend
 
 ## Configuration Options
 
-- Working hours (start/end)
-- Break times (start/end)
-- Slot duration (minutes)
-- Break duration between slots (minutes)
-- Priority distribution percentages
+- Working hours:
+  - day_start: Start of workday (format: HHMM)
+  - day_end: End of workday (format: HHMM)
+- Break times:
+  - break_start: Start of break (format: HHMM)
+  - break_end: End of break (format: HHMM)
+- Slot duration: timeSlotDuration (minutes)
+- Priority distribution:
+  - Tactical: Short-term work like feature scoping
+  - Operational: Team alignment and roadmap management
+  - Strategic: Long-term product positioning
+  - OKR/KPI: Key results and metrics tracking
+- days_to_generate: Number of days to create slots for
 
 ## Known Limitations
 
