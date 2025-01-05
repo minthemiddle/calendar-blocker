@@ -10,32 +10,43 @@ $generator = new Generator();
 // to save a list of available slots
 $slots = [];
 // to save a list of available slots' titles
-$titles = (array) [];
+$titles = [];
 
-while($currentTime <= $end && $day_current <= $day_end) {
-    $slotEnd = $currentTime->copy()->addMinutes($slotDuration);
-    if ($currentTime->hour * 100 + $currentTime->minute >= $working_hours['break_start'] &&
-        $slotEnd->hour * 100 + $slotEnd->minute <= $working_hours['break_end']) {
-        $currentTime = Carbon::createFromFormat('Hi', $working_hours['break_end'])->addMinutes($breakDuration);
-    } else {
-        $title = $generator->generate();
+$currentTime = Carbon::createFromFormat('Hi', $working_hours['day_start']);
+$end = Carbon::createFromFormat('Hi', $working_hours['day_end']);
 
-        $slot = [
-            'day' => $day_current,
-            'start_hour' => $currentTime->format('H'),
-            'start_minutes' => $currentTime->format('i'),
-            'end_hour' => $slotEnd->format('H'),
-            'end_minutes' => $slotEnd->format('i'),
-            'title' => $title,
-        ];
-        
-        $slots[] = $slot;
-        $titles[] = $title;
-        $currentTime = $slotEnd->addMinutes($breakDuration);
+$day_current = 0; // Initialize day_current variable
 
-        if ($currentTime->hour * 100 + $currentTime->minute >= $working_hours['day_end']) {
-            $day_current++;
-            $currentTime = $start;
+while ($currentTime <= $end && $day_current < $days_to_generate) { // Use "<" instead of "<="
+    for ($i = 0; $i < count($priorities); $i++) {
+        $slotEnd = $currentTime->copy()->addMinutes($timeSlotDuration);
+
+        if (
+            $currentTime->hour * 100 + $currentTime->minute >= $working_hours['break_start'] &&
+            $slotEnd->hour * 100 + $slotEnd->minute <= $working_hours['break_end']
+        ) {
+            $currentTime = Carbon::createFromFormat('Hi', $working_hours['break_end'])->addMinutes($breakInterval);
+        } else {
+            $title = $generator->generate();
+
+            $slot = [
+                'day' => $day_current,
+                'start_hour' => $currentTime->format('H'),
+                'start_minutes' => $currentTime->format('i'),
+                'end_hour' => $slotEnd->format('H'),
+                'end_minutes' => $slotEnd->format('i'),
+                'title' => $title,
+            ];
+
+            $slots[] = $slot;
+            $titles[] = $title;
+
+            $currentTime = $currentTime->addMinutes($timeSlotDuration);
+
+            if ($currentTime->hour * 100 + $currentTime->minute >= $working_hours['day_end']) {
+                $day_current++;
+                $currentTime = Carbon::createFromFormat('Hi', $working_hours['day_start']);
+            }
         }
     }
 }
