@@ -26,8 +26,8 @@ shuffle($slots_priorities_and_titles);
 foreach ($slots as $slot) {
     for ($day = $offset_days; $day < $days_to_generate; $day++) {
         $priority = array_shift($slots_priorities_and_titles);
-        $startDateTime = Carbon::today()->addDays($day)->setTime($slot['start_hour'], $slot['start_minutes']);
-        $endDateTime = Carbon::today()->addDays($day)->setTime($slot['end_hour'], $slot['end_minutes']);
+        $startDateTime = Carbon::today()->addDays($day)->setTime($slot['start_hour'], $slot['start_minutes'])->setTimezone(date_default_timezone_get());
+        $endDateTime = Carbon::today()->addDays($day)->setTime($slot['end_hour'], $slot['end_minutes'])->setTimezone(date_default_timezone_get());
         $events[] = Event::create()
             ->name('🚧 ' . $priority)
             ->description('Priority: ' . $priority . ', ID: ' . $slot['title'])
@@ -40,6 +40,7 @@ foreach ($slots as $slot) {
 // Create iCalendar data
 $calendar = Calendar::create('Blocker')
     ->event($events)
+    ->timezone(date_default_timezone_get())
     ->get();
 
 // Output the iCalendar data to a file
