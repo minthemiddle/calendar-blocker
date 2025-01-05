@@ -12,8 +12,8 @@ $slots = [];
 // to save a list of available slots' titles
 $titles = [];
 
-$currentTime = Carbon::createFromFormat('Hi', $working_hours['day_start']);
-$end = Carbon::createFromFormat('Hi', $working_hours['day_end']);
+$currentTime = Carbon::createFromFormat('Hi', $working_hours['day_start'])->setTimezone(date_default_timezone_get());
+$end = Carbon::createFromFormat('Hi', $working_hours['day_end'])->setTimezone(date_default_timezone_get());
 
 $day_current = 0; // Initialize day_current variable
 
