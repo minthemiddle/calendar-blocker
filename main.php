@@ -24,17 +24,23 @@ $slots_priorities_and_titles = generate_slots_priorities($priorities, count($slo
 shuffle($slots_priorities_and_titles);
 
 foreach ($slots as $slot) {
-    for ($day = $offset_days; $day < $days_to_generate; $day++) {
-        $priority = array_shift($slots_priorities_and_titles);
-        $startDateTime = Carbon::today()->addDays($day)->setTime($slot['start_hour'], $slot['start_minutes'])->setTimezone(date_default_timezone_get());
-        $endDateTime = Carbon::today()->addDays($day)->setTime($slot['end_hour'], $slot['end_minutes'])->setTimezone(date_default_timezone_get());
-        $events[] = Event::create()
-            ->name('🚧 ' . $priority)
-            ->description('Priority: ' . $priority . ', ID: ' . $slot['title'])
-            ->startsAt($startDateTime)
-            ->endsAt($endDateTime)
-            ->classification(Classification::private());
+    $priority = array_shift($slots_priorities_and_titles);
+    $startDateTime = Carbon::today()->addDays($slot['day'])->setTime($slot['start_hour'], $slot['start_minutes'])->setTimezone(date_default_timezone_get());
+    $endDateTime = Carbon::today()->addDays($slot['day'])->setTime($slot['end_hour'], $slot['end_minutes'])->setTimezone(date_default_timezone_get());
+    
+    // Skip if this slot falls during break time
+    $slotStart = $startDateTime->hour * 100 + $startDateTime->minute;
+    $slotEnd = $endDateTime->hour * 100 + $endDateTime->minute;
+    if ($slotStart >= $working_hours['break_start'] && $slotEnd <= $working_hours['break_end']) {
+        continue;
     }
+    
+    $events[] = Event::create()
+        ->name('🚧 ' . $priority)
+        ->description('Priority: ' . $priority . ', ID: ' . $slot['title'])
+        ->startsAt($startDateTime)
+        ->endsAt($endDateTime)
+        ->classification(Classification::private());
 }
 
 // Create iCalendar data

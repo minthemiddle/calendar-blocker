@@ -20,12 +20,15 @@ $day_current = 0; // Initialize day_current variable
 while ($currentTime <= $end && $day_current < $days_to_generate) {
     $slotEnd = $currentTime->copy()->addMinutes($timeSlotDuration);
 
-    if (
-        $currentTime->hour * 100 + $currentTime->minute >= $working_hours['break_start'] &&
-        $slotEnd->hour * 100 + $slotEnd->minute <= $working_hours['break_end']
-    ) {
-        $currentTime = Carbon::createFromFormat('Hi', $working_hours['break_end'])->addMinutes($breakInterval);
-    } else {
+    $slotStart = $currentTime->hour * 100 + $currentTime->minute;
+    $slotEndTime = $slotEnd->hour * 100 + $slotEnd->minute;
+    
+    // If slot overlaps with break time, skip to after break
+    if ($slotStart < $working_hours['break_end'] && $slotEndTime > $working_hours['break_start']) {
+        $currentTime = Carbon::createFromFormat('Hi', $working_hours['break_end']);
+        continue;
+    }
+    
         $title = $generator->generate();
 
         $slot = [
