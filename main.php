@@ -50,7 +50,7 @@ foreach ($slots as $slot) {
 // Create iCalendar data
 $calendar = Calendar::create('Blocker')
     ->event($events)
-    ->timezone('Europe/Berlin')
+    ->timezone(date_default_timezone_get())
     ->withoutTimezone()
     ->get();
 
