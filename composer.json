@@ -1,7 +1,7 @@
 {
     "require": {
-        "spatie/icalendar-generator": "^3.0",
+        "spatie/icalendar-generator": "^2.9",
         "nesbot/carbon": "^3.0",
-        "chypriote/unique-names-generator": "^1.0"
+        "chypriote/unique-names-generator": "^0.0.2"
     }
 }
